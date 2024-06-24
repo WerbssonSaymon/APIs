@@ -36,6 +36,17 @@ area | tamanho do territorio
 capital | a capital do estado
 
 
+```json
+{
+    "nome": "Acre",
+    "sigla": "AC",
+    "regiao": "Norte",
+    "populacao": 881935,
+    "area": 164123.04,
+    "capital": "Rio Branco"
+}
+
+
 ## Modelagem da rota - calamitys
 
 Field | Description
@@ -45,3 +56,18 @@ sigla | sigla do estado
 calamidade | tipo de calamidade como seca, inundação, enchente, etc.
 ano | ano que aconteceu a calamidade
 afetados | quantidade de pessoas afetadas
+
+
+```json
+{
+    "estado": "Santa Catarina",
+    "sigla": "SC",
+    "calamidade": "inundação",
+    "ano": 2008,
+    "afetados": 1500000
+}
+
+
+## API testada e documentada no insomnia
+
+![Tela do insomnia](./assets/insomnia.png)

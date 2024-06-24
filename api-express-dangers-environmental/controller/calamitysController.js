@@ -36,7 +36,7 @@ export const updateCalamity = (request, response) => {
 
 export const addCalamity = (request, response) => {
     const newCalamity = request.body;
-         Calamity.push(newCalamity);
+         calamity.push(newCalamity);
          response.status(200).send(newCalamity);
 }
 
