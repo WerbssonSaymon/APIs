@@ -45,7 +45,7 @@ capital | a capital do estado
     "area": 164123.04,
     "capital": "Rio Branco"
 }
-
+```
 
 ## Modelagem da rota - calamitys
 
@@ -66,7 +66,7 @@ afetados | quantidade de pessoas afetadas
     "ano": 2008,
     "afetados": 1500000
 }
-
+```
 
 ## API testada e documentada no insomnia
 
