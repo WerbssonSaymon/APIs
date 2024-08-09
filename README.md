@@ -14,3 +14,8 @@
 
 - API de Petshop
 - Java Springboot, JDBC, Mysql
+
+### api-typescript-prisma-veiculos
+
+- Api de veiculos
+- Typescript, Prisma ORM, Express, Mysql 
