@@ -3,12 +3,20 @@ import { Request, Response } from 'express';
 
 const prisma = new PrismaClient();
 
+interface VeiculoRequestBody {
+  modelo: string
+  fabricante: string
+  quantidade: number
+}
+
 export const createVeiculo = async (req: Request, res: Response): Promise<void> => {
     try {
-        const { nome } = req.body as unknown as { nome: string };
+        const { modelo, fabricante, quantidade } = req.body as VeiculoRequestBody;
         const veiculo = await prisma.veiculo.create({
           data: {
-            nome,
+            modelo,
+            fabricante,
+            quantidade,
           },
         });
         res.status(201).json(veiculo);
@@ -43,6 +51,38 @@ export const getByIdVeiculos = async (req: Request, res: Response): Promise<void
   }
 }
 
+export const getByFabricVeiculos = async (req: Request, res: Response): Promise<void> => {
+  try {
+
+      const { fabricante } = req.params;
+
+      const fabricanteExiste = await prisma.veiculo.findFirst({
+        where: { 
+          fabricante: {
+            equals: fabricante,
+          },
+        },
+      });
+
+      if (!fabricanteExiste) {
+        res.status(404).json({ message: `Fabricante ${fabricante} não encontrado.` });
+        return;
+      }
+
+      const veiculos = await prisma.veiculo.findMany({
+        where: { 
+          fabricante: {
+            equals: fabricante,
+          },
+        },
+      })
+
+      res.status(200).json(veiculos);
+  } catch {
+      res.status(500).json({ error: 'Erro ao buscar o veículo pelo fabricante' });
+  }
+}
+
 export const deleteByIdVeiculos = async (req: Request, res: Response): Promise<void> => {
     try {
         const { id } = req.params
@@ -61,14 +101,16 @@ export const deleteByIdVeiculos = async (req: Request, res: Response): Promise<v
 export const updateByIdVeiculo = async (req: Request, res: Response): Promise<void> => {
     try {
       const { id } = req.params
-      const { nome } = req.body as unknown as { nome: string };
+      const { modelo, fabricante, quantidade } = req.body as unknown as { modelo: string, fabricante: string, quantidade: number };
 
       const veiculos = await prisma.veiculo.update({
         where: {
           id: Number(id),
         },
         data: {
-          nome,
+          modelo,
+          fabricante,
+          quantidade,
         }
       })
       res.status(200).json(veiculos);

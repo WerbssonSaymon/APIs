@@ -8,6 +8,8 @@ datasource db {
 }
 
 model veiculo {
-  id   Int    @id @default(autoincrement())
-  nome String @db.VarChar(100)
+  id         Int    @id @default(autoincrement())
+  modelo     String @db.VarChar(100)
+  fabricante String @db.VarChar(30)
+  quantidade Int
 }
